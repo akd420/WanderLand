@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 // import { MdOutlineDarkMode, MdDarkMode } from "react-icons/md";
 
 import toast from "react-hot-toast";
@@ -183,9 +184,21 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"}>
-              <button className="btn bg-grn text-white">Login</button>
+            <div className="flex flex-col md:flex-row text-center items-center">
+              <Link to={"/login"}>
+              <motion.button whileHover={{
+                scale: 1.2,
+                transition: { duration: 0.1 },
+              }} className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn">Login</motion.button>
             </Link>
+            <p className="text-lg mx-2">or</p>
+              <Link to={"/register"}>
+              <motion.button whileHover={{
+                scale: 1.2,
+                transition: { duration: 0.1 },
+              }} className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn">Register</motion.button>
+            </Link>
+            </div>
           )}
           {/* <div className="ml-2 flex items-center justify-center">
             <label className="swap swap-rotate">

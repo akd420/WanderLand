@@ -9,6 +9,8 @@ import {
   } from "firebase/auth";
   import { createContext, useEffect, useState } from "react";
   import auth from "../firebase/firebaseConfig";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../Hooks/useAxios";
   
   export const AuthContext = createContext(null);
   const googleProvider = new GoogleAuthProvider();
@@ -40,6 +42,15 @@ import {
     const signOutUser = () => {
       return signOut(auth)
     }
+
+    const axiosSecure = useAxios();
+  const { data: blogs, isLoading } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: async () => {
+      const response = await axiosSecure.get("/blogs");
+      return response.data;
+    },
+  });
   
     useEffect(()=>{
       onAuthStateChanged(auth,(user)=>{
@@ -55,7 +66,9 @@ import {
       createUser,
       signInUser,
       signOutUser,
-      loading
+      loading,
+      blogs,
+      isLoading
     };
   
     return (

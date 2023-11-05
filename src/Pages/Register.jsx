@@ -4,6 +4,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../Provider/AuthProvider";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const { googleLogin, createUser } = useContext(AuthContext);
@@ -170,17 +171,31 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6 space-y-5">
-                  <button className="btn bg-grn text-white">Register</button>
+                  <motion.button
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.1 },
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    className="btn bg-grn text-white hover:bg-grn"
+                  >
+                    Register
+                  </motion.button>
                   <p className="text-center">Or</p>
                 </div>
               </form>
               <div className="flex items-center justify-center mb-5 px-8">
-                <button
+                <motion.button
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.1 },
+                  }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={handleGoogleLogin}
-                  className="w-full btn bg-grn text-white"
+                  className="w-full btn bg-grn text-white hover:bg-grn"
                 >
                   <BiLogoGoogle></BiLogoGoogle>Register with Google
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>

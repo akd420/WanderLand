@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { AiOutlineCalendar } from "react-icons/ai";
 import { GiPencil } from "react-icons/gi";
 import { motion } from "framer-motion";
