@@ -9,43 +9,60 @@ import PrivateRoute from "./PrivateRoute";
 import AllBlogs from "../Pages/AllBlogs";
 import Wishlist from "../Pages/Wishlist";
 import Featured from "../Pages/Featured";
+import Update from "../Pages/Update";
 
 const Router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root></Root>,
-      errorElement: <NotFound></NotFound>,
-      children: [
-        {
-          path: "/",
-          element: <Home></Home>,
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/register',
-            element: <Register></Register>
-        },
-        {
-          path: "/add",
-          element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>,
-        },
-        {
-          path: "/blogs",
-          element: <AllBlogs></AllBlogs>
-        },
-        {
-          path: "/wishlist",
-          element: <Wishlist></Wishlist>,
-        },
-        {
-          path: "/featured",
-          element: <Featured></Featured>
-        }
-      ],
-    },
-  ]);
-  
-  export default Router;
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/add",
+        element: (
+          <PrivateRoute>
+            <AddBlog></AddBlog>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <Update></Update>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blogs",
+        element: <AllBlogs></AllBlogs>,
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PrivateRoute>
+            <Wishlist></Wishlist>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/featured",
+        element: <Featured></Featured>,
+      },
+    ],
+  },
+]);
+
+export default Router;

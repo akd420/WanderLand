@@ -88,13 +88,13 @@ const AddBlog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 mb-8">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Blog Name</span>
+                <span className="label-text">Blog Title</span>
               </label>
               <label className="input-group">
                 <input
                   type="text"
                   name="name"
-                  placeholder="Blog Name"
+                  placeholder="Blog Title"
                   className="input input-bordered w-full"
                   required
                 />
