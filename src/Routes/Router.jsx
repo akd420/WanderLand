@@ -7,6 +7,8 @@ import Register from "../Pages/Register";
 import AddBlog from "../Pages/AddBlog";
 import PrivateRoute from "./PrivateRoute";
 import AllBlogs from "../Pages/AllBlogs";
+import Wishlist from "../Pages/Wishlist";
+import Featured from "../Pages/Featured";
 
 const Router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const Router = createBrowserRouter([
         {
           path: "/blogs",
           element: <AllBlogs></AllBlogs>
+        },
+        {
+          path: "/wishlist",
+          element: <Wishlist></Wishlist>,
+        },
+        {
+          path: "/featured",
+          element: <Featured></Featured>
         }
       ],
     },

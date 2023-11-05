@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import BlogCard from "./BlogCard";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const LatestBlogs = () => {
   const { blogs, isLoading } = useContext(AuthContext);
@@ -31,7 +32,20 @@ const LatestBlogs = () => {
               <BlogCard blog={blog} key={blog._id}></BlogCard>
             ))}
           </div>
-        <div className="flex justify-center my-12"><Link to={"/blogs"}><button className="btn bg-grn text-white">View More</button></Link></div>
+          <div className="flex justify-center my-12">
+            <Link to={"/blogs"}>
+              <motion.button
+                whileHover={{
+                  scale: 1.2,
+                  transition: { duration: 0.1 },
+                }}
+                whileTap={{ scale: 0.9 }}
+                className="btn bg-grn text-white hover:bg-grn"
+              >
+                View More
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </div>
     );

@@ -57,7 +57,7 @@ const Tips = () => {
                 transition: { duration: 0.1 },
               }}
               whileTap={{ scale: 0.9 }}
-              className="btn bg-grn text-white w-fit mt-5 hover-bg-grn"
+              className="btn bg-grn text-white w-fit mt-5 hover:bg-grn"
             >
               Read More
             </motion.button>
@@ -104,7 +104,7 @@ const Tips = () => {
                 transition: { duration: 0.1 },
               }}
               whileTap={{ scale: 0.9 }}
-              className="btn bg-grn text-white w-fit mt-5 hover-bg-grn"
+              className="btn bg-grn text-white w-fit mt-5 hover:bg-grn"
             >
               Read More
             </motion.button>
