@@ -2,9 +2,12 @@ import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Update = () => {
-
+  const { user } = useContext(AuthContext);
+  const userPhoto = user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
   const axiosSecure = useAxios();
   const {id} = useParams();
   console.log(id);
@@ -31,6 +34,7 @@ const Update = () => {
       shortDis,
       longDis,
       photo,
+      userPhoto,
     };
     console.log(updatedBlog);
 
