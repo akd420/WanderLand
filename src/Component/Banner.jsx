@@ -26,7 +26,7 @@ const Banner = () => {
                 transition: { duration: 0.1 },
               }}
               whileTap={{ scale: 0.9 }}
-              href="/all"
+              href="/blogs"
               className="btn bg-grn hover:bg-grn text-white border-none"
             >
               Start Exploring
