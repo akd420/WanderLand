@@ -6,8 +6,10 @@ import NewsLetter from "../Component/NewsLetter";
 import Tips from "../Component/Tips";
 import { motion, useAnimation } from "framer-motion";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import { useInView } from "react-intersection-observer";
 
 const Home = () => {
+  const { ref, inView } = useInView({ threshold: 0.1 });
   const [showScrollButton, setShowScrollButton] = useState(false);
   const controls = useAnimation();
 
@@ -40,24 +42,28 @@ const Home = () => {
 
   return (
     <div className=" mx-auto">
-      <Banner></Banner>
-      <LatestBlogs></LatestBlogs>
-      <Tips></Tips>
-      <NewsLetter></NewsLetter>
-      <Items></Items>
-      <motion.button
-        className="fixed bottom-6 right-6 text-2xl text-grn px-4 py-2 rounded-full opacity-0 transition-opacity duration-300 "
-        onClick={scrollToTop}
-        initial={{ opacity: 0 }}
-        animate={controls}
-        whileHover={{
+      <Banner />
+      <LatestBlogs />
+      <Tips />
+      <NewsLetter />
+      <div ref={ref}>
+        <Items />
+      </div>
+      {inView ? (
+        <motion.button
+          className="fixed bottom-6 right-6 text-2xl text-grn px-4 py-2 rounded-full opacity-0 transition-opacity duration-300 z-10"
+          onClick={scrollToTop}
+          initial={{ opacity: inView ? 1 : 0 }}
+          animate={controls}
+          whileHover={{
             scale: 1.2,
             transition: { duration: 0.1 },
           }}
           whileTap={{ scale: 0.9 }}
-      >
-        <BsFillArrowUpCircleFill></BsFillArrowUpCircleFill>
-      </motion.button>
+        >
+          <BsFillArrowUpCircleFill />
+        </motion.button>
+      ) : null}
     </div>
   );
 };

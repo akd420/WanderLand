@@ -2,13 +2,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
 
 /* eslint-disable react/prop-types */
-const BlogCard = ({ blog }) => {
-  const { _id, name, category, shortDis, longDis, photo, timestamp, userName } =
-    blog;
+const WishListCard = ({ Wishlist,refetch }) => {
+  const { _id, name, category, shortDis, photo ,blogId} = Wishlist;
   let cat = category;
   if (category === "destinations") {
     cat = "Destinations";
@@ -21,52 +18,22 @@ const BlogCard = ({ blog }) => {
   } else if (category === "culture") {
     cat = "Culture & Insights";
   }
-  const { user } = useContext(AuthContext);
-  const email = user?.email;
-  const blogId = _id;
-  const newWishlist = {
-    name,
-    category,
-    shortDis,
-    longDis,
-    email,
-    photo,
-    timestamp,
-    userName,
-    blogId,
-  };
   const axiosSecure = useAxios();
-const handleAddToWishlist = () => {
-  axiosSecure.post("/wishlists", newWishlist)
-    .then((res) => {
-      const insertedId = parseInt(res.data.insertedId);
-      if (insertedId > 0) {
-        toast("Added To Your Wishlist", {
-          icon: "✅",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-      }
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 409) {
-        toast("Duplicate Entry: This blog is already in your wishlist", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#f00",
-            color: "#fff",
-          },
-        });
-      } else {
-        console.error(error);
-      }
+  const handleDelete = id => {
+    axiosSecure.delete(`/wishlists/${id}`).then((res) => {
+        if (res.data.deletedCount > 0) {
+            toast("Deleted From Your Wishlist", {
+            icon: "✅",
+            style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+            },
+            });
+            refetch();
+        }
     });
-};
-
+  };
   return (
     <div>
       <div className="card card-compact bg-base-100 md:h-[500px]">
@@ -74,7 +41,6 @@ const handleAddToWishlist = () => {
           <img src={photo} alt="Shoes" />
         </figure>
         <div className="card-body">
-          {/* <h2 className="card-title">{name}</h2> */}
           <div title={name} className="card-title">
             {name.length > 62 ? <p>{name.slice(0, 60)}. . . . </p> : name}
           </div>
@@ -87,7 +53,7 @@ const handleAddToWishlist = () => {
             )}
           </div>
           <div className="card-actions mt-2">
-            <Link to={`/blogs/${_id}`}>
+            <Link to={`/blogs/${blogId}`}>
               <motion.button
                 whileHover={{
                   scale: 1.2,
@@ -100,7 +66,7 @@ const handleAddToWishlist = () => {
               </motion.button>
             </Link>
             <motion.button
-              onClick={handleAddToWishlist}
+              onClick={() => handleDelete(_id)}
               whileHover={{
                 scale: 1.2,
                 transition: { duration: 0.1 },
@@ -108,7 +74,7 @@ const handleAddToWishlist = () => {
               whileTap={{ scale: 0.9 }}
               className="btn hover:bg-grn bg-grn text-white btn-sm md:btn-md"
             >
-              Add To Wishlist
+              Delete
             </motion.button>
           </div>
         </div>
@@ -117,4 +83,4 @@ const handleAddToWishlist = () => {
   );
 };
 
-export default BlogCard;
+export default WishListCard;

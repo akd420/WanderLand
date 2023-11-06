@@ -86,7 +86,7 @@ const AllBlogs = () => {
             {filteredBlogs.map((blog) => (
               <BlogCard key={blog._id} blog={blog}></BlogCard>
             ))}
-          </div> :<div className=" max-w-screen-xl w-screen mx-a\">
+          </div> :<div className=" max-w-screen-xl w-screen mx-auto">
                 <h1 className="text-center font-bold text-5xl">No match Found!!!</h1>
           </div>
           }

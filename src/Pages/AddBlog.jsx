@@ -7,7 +7,6 @@ const AddBlog = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
   const userName = user.displayName; 
-  console.log(userName);
   const axiosSecure = useAxios();
   const handleAddBlog = (event) => {
     event.preventDefault();
