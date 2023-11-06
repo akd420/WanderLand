@@ -6,7 +6,8 @@ import useAxios from "../Hooks/useAxios";
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
-  const userName = user.displayName; 
+  const userName = user?.displayName; 
+  const userPhoto = user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
   const axiosSecure = useAxios();
   const handleAddBlog = (event) => {
     event.preventDefault();
@@ -27,6 +28,7 @@ const AddBlog = () => {
       photo,
       timestamp,
       userName,
+      userPhoto,
     };
     console.log(newBlog);
 

@@ -27,7 +27,7 @@ const Update = () => {
     const shortDis = form.shortDis.value;
     const longDis = form.longDis.value;
     const photo = form.photo.value;
-
+    
     const updatedBlog = {
       name,
       category,
