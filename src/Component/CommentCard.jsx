@@ -1,16 +1,18 @@
-const CommentCard = () => {
+/* eslint-disable react/prop-types */
+const CommentCard = ({comment}) => {
+
   return (
     <div className="mt-12">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src={comment.currentUserPhoto} ></img>
           </div>
         </div>
         <div className="chat-header mb-2">
-          Obi-Wan Kenobi
+          {comment.currentUserName}
         </div>
-        <div className="chat-bubble bg-grn">You were the Chosen One!</div>
+        <div className="chat-bubble bg-grn">{comment.comment} </div>
       </div>
     </div>
   );

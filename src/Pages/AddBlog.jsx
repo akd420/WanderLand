@@ -32,30 +32,6 @@ const AddBlog = () => {
 
     // send data to the server
 
-    // fetch(
-    //   "https://techno-city-mpl1ken8j-ayan-kumars-projects.vercel.app/Blogs",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newBlog),
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.insertedId) {
-    //       toast("Blog Added", {
-    //         icon: "✅",
-    //         style: {
-    //           borderRadius: "10px",
-    //           background: "#333",
-    //           color: "#fff",
-    //         },
-    //       });
-    //     }
-    //   });
     axiosSecure.post('/blogs',newBlog)
     .then((res) =>{
         console.log(res.data)

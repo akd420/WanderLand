@@ -50,7 +50,9 @@ const LatestBlogs = () => {
       </div>
     );
   } else {
-    return <p>Loading....</p>;
+    return <div className="w-screen h-screen flex items-center justify-center">
+    <span className="loading loading-spinner text-grn  loading-lg"></span>
+  </div>;
   }
 };
 

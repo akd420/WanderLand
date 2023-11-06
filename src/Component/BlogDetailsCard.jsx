@@ -1,8 +1,22 @@
-import React from 'react';
-import CommentCard from './CommentCard';
+/* eslint-disable react/prop-types */
+import { useContext } from "react";
+import CommentCard from "./CommentCard";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
+import useAxios from "../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const BlogDetailsCard = ({ blogDetails }) => {
-  const { _id, name, category, shortDis, longDis, photo, userName } = blogDetails;
+  const { _id, name, category, shortDis, longDis, photo,email, userName } =
+    blogDetails;
+  const { user } = useContext(AuthContext);
+  const blogId = _id;
+  const currentEmail = user?.email;
+  const currentUserName = user?.displayName;
+  const currentUserPhoto =
+    user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
+
   let cat = category;
   if (category === "destinations") {
     cat = "Destinations";
@@ -15,6 +29,43 @@ const BlogDetailsCard = ({ blogDetails }) => {
   } else if (category === "culture") {
     cat = "Culture & Insights";
   }
+  const axiosSecure = useAxios();
+  const {
+    data: commentsData,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["comments", blogId],
+    queryFn: async () => {
+      const response = await axiosSecure.get(`/comments/${blogId}`);
+      return response.data;
+    },
+  });
+  const handleComment = (e) => {
+    e.preventDefault();
+    const comment = e.target.comment.value;
+    const newComment = {
+      comment,
+      blogId,
+      currentUserName,
+      currentUserPhoto,
+    };
+
+    axiosSecure.post("/comments", newComment).then((res) => {
+      const insertedId = parseInt(res.data.insertedId);
+      if (insertedId > 0) {
+        toast("Comment Added", {
+          icon: "✅",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
+      refetch();
+    });
+  };
   return (
     <div>
       <div className="max-w-screen-xl mx-auto my-12">
@@ -25,35 +76,84 @@ const BlogDetailsCard = ({ blogDetails }) => {
                 {name}
               </h2>
               <p>by {userName}</p>
-              <a href="#" className="py-2 text-grn inline-flex items-center justify-center mb-2">
+              <a
+                href="#"
+                className="py-2 text-grn inline-flex items-center justify-center mb-2"
+              >
                 {cat}
               </a>
             </div>
 
-            <img
-              src={photo}
-              className="w-full rounded"
-              alt=""
-            />
+            <img src={photo} className="w-full rounded" alt="" />
           </div>
 
           <div>
             <div className="px-4 mt-12 text-gray-700 text-lg leading-relaxed w-full">
-              <p className="pb-6"><span className='font-bold'>About this Blog:</span> {shortDis}</p>
-              <p className="pb-6"><span className='font-bold'>Full Blog:</span> {longDis}</p>
+              <p className="pb-6">
+                <span className="font-bold">About this Blog:</span> {shortDis}
+              </p>
+              <p className="pb-6">
+                <span className="font-bold">Full Blog:</span> {longDis}
+              </p>
+              {
+                email === currentEmail ? (
+                    <div className="flex justify-end">
+              <Link to={`/update/${blogId}`}><button className="btn bg-grn text-white ">Edit Blog</button></Link>
+              </div>
+                ) : ""
+              }
             </div>
-
           </div>
-        <div className='px-4 mt-10'>
-            <h2 className='text-3xl font-semibold'>Post A Comment</h2>
-            <div className='w-8/12'>
-            <form className='flex flex-col'>
-                <textarea className='border-2 border-gray-300 p-2 rounded-md mt-4 h-52' placeholder='Write Your Comment Here . . .'></textarea>
-                <button className='bg-grn w-fit text-white rounded-md p-2 mt-4'>Post Comment</button>
-            </form>
-            <CommentCard></CommentCard>
+          <div className="px-4 mt-10">
+            {
+                email !== currentEmail ? (<h2 className="text-3xl font-semibold">Post A Comment</h2>) : (<div>
+                    <h1 className="text-xl font-semibold mb-10">Can not post on your own Post.</h1>
+                </div>)
+            }
+            <div className="w-8/12">
+             {
+                email !== currentEmail ? (
+                    <form onSubmit={handleComment} className="flex flex-col">
+                    <textarea
+                      name="comment"
+                      className="border-2 border-gray-300 p-2 rounded-md mt-4 h-52"
+                      placeholder="Write Your Comment Here . . ."
+                    ></textarea>
+                    <button
+                      type="submit"
+                      className="bg-grn w-fit text-white rounded-md p-2 mt-4"
+                    >
+                      Post Comment
+                    </button>
+                  </form>
+                ) : ""
+             }
+              <div>
+                {isLoading ? (
+                  <p>Loading...</p>
+                ) : 
+                
+                commentsData?.length > 0 ? (
+                  <div>
+                    <h2 className="text-3xl font-semibold">Comments:</h2>
+                    <div>
+                   {
+                     commentsData.map((comment) => (
+                        <CommentCard
+                          key={comment._id}
+                          comment={comment}
+                          refetch={refetch}
+                        ></CommentCard>
+                      ))
+                   }
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-12 text-2xl">No Comments Yet</p>
+                )}
+              </div>
             </div>
-        </div>
+          </div>
         </main>
       </div>
     </div>
