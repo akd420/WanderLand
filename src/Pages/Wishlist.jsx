@@ -34,7 +34,7 @@ const Wishlist = () => {
             {wishlists?.length > 0 ? (
                <>
                 <h1 className="text-3xl md:text-5xl text-center my-12">
-                {name}'s <span className="text-grn">Wishlists</span>
+                {name}'S <span className="text-grn">Wishlists</span>
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 {wishlists.map((Wishlist) => (

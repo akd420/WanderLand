@@ -165,7 +165,7 @@ const Navbar = () => {
                   {user?.photoURL ? (
                     <img src={user.photoURL} />
                   ) : (
-                    <img src="/profile.svg" />
+                    <img src="/user.png" />
                   )}
                 </div>
               </label>
