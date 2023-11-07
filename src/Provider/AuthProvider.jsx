@@ -10,7 +10,8 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebaseConfig";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../Hooks/useAxios";
+// import useAxios from "../Hooks/useAxios";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -38,27 +39,41 @@ const AuthProvider = ({ children }) => {
   };
 
   //sign out
-
   const signOutUser = () => {
     return signOut(auth);
   };
 
-  const axiosSecure = useAxios();
   const { data: blogs, isLoading } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/blogs");
+      const response = await axios.get("http://localhost:5000/blogs");
       return response.data;
     },
   });
 
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email: userEmail};
+      setUser(currentUser);
       setLoading(false);
+      if(currentUser){
+        // axiosSecure.post("/jwt", loggedUser)
+        axios.post("http://localhost:5000/jwt", loggedUser,{ withCredentials: true})
+        .then((res) => {
+          console.log("token response",res.data);
+        })
+      }
+      else{
+        // axiosSecure.post("/logout", loggedUser)
+        axios.post("http://localhost:5000/logout", loggedUser,{ withCredentials: true})
+        .then((res) => {
+          console.log("logout response",res.data);
+        })
+      }
     });
-  }, []);
+  });
 
   const authenticate = {
     user,

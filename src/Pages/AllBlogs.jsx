@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const AllBlogs = () => {
-  const {blogs,isLoading} = useContext(AuthContext);
+  const { blogs, isLoading } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState([]);
@@ -81,15 +81,19 @@ const AllBlogs = () => {
               </label>
             </div>
           </div>
-          {
-            filteredBlogs.length >0 ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-            {filteredBlogs.map((blog) => (
-              <BlogCard key={blog._id} blog={blog}></BlogCard>
-            ))}
-          </div> :<div className=" max-w-screen-xl w-screen mx-auto">
-                <h1 className="text-center font-bold text-5xl">No match Found!!!</h1>
-          </div>
-          }
+          {filteredBlogs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+              {filteredBlogs.map((blog) => (
+                <BlogCard key={blog._id} blog={blog}></BlogCard>
+              ))}
+            </div>
+          ) : (
+            <div className=" max-w-screen-xl w-screen mx-auto">
+              <h1 className="text-center font-bold text-5xl">
+                No match Found!!!
+              </h1>
+            </div>
+          )}
         </div>
       )}
     </div>
