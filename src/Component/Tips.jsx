@@ -2,6 +2,7 @@
 import { AiOutlineCalendar } from "react-icons/ai";
 import { GiPencil } from "react-icons/gi";
 import { motion } from "framer-motion";
+import { PhotoView } from "react-photo-view";
 const Tips = () => {
   return (
     <div
@@ -17,6 +18,7 @@ const Tips = () => {
         </div>
         <div className="flex flex-col justify-center md:flex-row gap-10 py-20 p-4 md:px-5 lg:px-10">
           <div className="md:w-1/2">
+            <PhotoView src="/blog.jpg">
             <motion.img
               whileHover={{
                 rotate: -5,
@@ -25,6 +27,7 @@ const Tips = () => {
               src="/blog.jpg"
               alt=""
             />
+            </PhotoView>
           </div>
           <div className="md:w-1/2 flex flex-col justify-center">
             <div className="flex gap-6 mb-5">
@@ -65,7 +68,8 @@ const Tips = () => {
         </div>
         <div className="flex flex-col justify-center md:flex-row-reverse gap-10 py-20 p-4 md:px-5 lg:px-10">
           <div className="md:w-1/2">
-            <motion.img
+           <PhotoView src="/blog1.jpg">
+           <motion.img
               whileHover={{
                 rotate: 5,
                 transition: { duration: 0.5 },
@@ -73,6 +77,7 @@ const Tips = () => {
               src="/blog1.jpg"
               alt=""
             />
+           </PhotoView>
           </div>
           <div className="md:w-1/2 flex flex-col justify-center">
             <div className="flex gap-6 mb-5">

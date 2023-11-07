@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { PhotoView } from "react-photo-view";
 
 const BlogDetailsCard = ({ blogDetails }) => {
   const { _id, name, category, shortDis, longDis, photo,email, userName } =
@@ -84,7 +85,9 @@ const BlogDetailsCard = ({ blogDetails }) => {
               </a>
             </div>
 
+            <PhotoView src={photo}>
             <img src={photo} className="w-full rounded" alt="" />
+            </PhotoView>
           </div>
 
           <div>

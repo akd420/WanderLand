@@ -10,7 +10,6 @@ const Update = () => {
   const userPhoto = user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
   const axiosSecure = useAxios();
   const {id} = useParams();
-  console.log(id);
   const { data: blogDetails, isLoading } = useQuery({
     queryKey: ["blogDetails"],
     queryFn: async () => {
@@ -27,7 +26,7 @@ const Update = () => {
     const shortDis = form.shortDis.value;
     const longDis = form.longDis.value;
     const photo = form.photo.value;
-    
+
     const updatedBlog = {
       name,
       category,

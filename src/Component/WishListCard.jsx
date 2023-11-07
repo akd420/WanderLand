@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
+import { PhotoView } from "react-photo-view";
 
 /* eslint-disable react/prop-types */
 const WishListCard = ({ Wishlist,refetch }) => {
@@ -38,7 +39,9 @@ const WishListCard = ({ Wishlist,refetch }) => {
     <div>
       <div className="card card-compact bg-base-100 md:h-[500px]">
         <figure>
+          <PhotoView src={photo}>
           <img src={photo} alt="Shoes" />
+          </PhotoView>
         </figure>
         <div className="card-body">
           <div title={name} className="card-title">

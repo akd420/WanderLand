@@ -44,15 +44,16 @@ const Home = () => {
     <div className=" mx-auto">
       <Banner />
       <LatestBlogs />
+      <div ref={ref}>
       <Tips />
       <NewsLetter />
-      <div ref={ref}>
         <Items />
       </div>
       {inView ? (
         <motion.button
           className="fixed bottom-6 right-6 text-2xl text-grn px-4 py-2 rounded-full opacity-0 transition-opacity duration-300 z-10"
           onClick={scrollToTop}
+          title="Scroll To Top"
           initial={{ opacity: inView ? 1 : 0 }}
           animate={controls}
           whileHover={{

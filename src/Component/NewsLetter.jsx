@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import { PhotoView } from "react-photo-view";
 const NewsLetter2 = () => {
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -21,7 +22,9 @@ const NewsLetter2 = () => {
     >
       <div className="flex flex-col md:flex-row justify-center max-w-screen-xl mx-auto gap-10 p-4 md:p-10 lg:p-12">
         <div className="md:w-1/2">
+          <PhotoView src="/newsletter.png">
           <img src="/newsletter.png" alt="" />
+          </PhotoView>
         </div>
         <div className="md:w-1/2">
           <h1 className="text-2xl font-bold mb-5 lg:mt-5">

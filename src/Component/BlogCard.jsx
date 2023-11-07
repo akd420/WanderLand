@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import {  PhotoView } from 'react-photo-view';
+
 
 /* eslint-disable react/prop-types */
 const BlogCard = ({ blog }) => {
@@ -71,7 +73,9 @@ const handleAddToWishlist = () => {
     <div>
       <div className="card card-compact bg-base-100 md:h-[500px]">
         <figure>
-          <img src={photo} alt="Shoes" />
+            <PhotoView src={photo}>
+            <img src={photo} alt="Shoes" />
+            </PhotoView>
         </figure>
         <div className="card-body">
           {/* <h2 className="card-title">{name}</h2> */}

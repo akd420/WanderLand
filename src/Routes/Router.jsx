@@ -8,9 +8,10 @@ import AddBlog from "../Pages/AddBlog";
 import PrivateRoute from "./PrivateRoute";
 import AllBlogs from "../Pages/AllBlogs";
 import Wishlist from "../Pages/Wishlist";
-import Featured from "../Pages/Featured";
 import Update from "../Pages/Update";
 import BlogDetails from "../Pages/BlogDetails";
+import Featured2 from "../Pages/Featured";
+import Featured from "../Pages/Featured";
 
 const Router = createBrowserRouter([
   {
@@ -60,7 +61,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/featured",
-        element: <Featured></Featured>,
+        element: <Featured></Featured>
       },
       {
         path: "/blogs/:id",

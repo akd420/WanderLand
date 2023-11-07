@@ -5,6 +5,8 @@ import AuthProvider from "./Provider/AuthProvider";
 import { RouterProvider } from "react-router-dom";
 import Router from "./Routes/Router";
 import '@smastrom/react-rating/style.css'
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider } from 'react-photo-view';
 import {
   QueryClient,
   QueryClientProvider,
@@ -16,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
      <QueryClientProvider client={queryClient}>
      <AuthProvider>
-    <RouterProvider router={Router} />
+   <PhotoProvider>
+   <RouterProvider router={Router} />
+   </PhotoProvider>
     </AuthProvider>
      </QueryClientProvider>
   </React.StrictMode>
