@@ -46,31 +46,37 @@ const AuthProvider = ({ children }) => {
   const { data: blogs, isLoading } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/blogs");
+      const response = await axios.get(
+        "https://wanderland-server.vercel.app/blogs"
+      );
       return response.data;
     },
   });
 
-
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user?.email;
-      const loggedUser = {email: userEmail};
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
-      if(currentUser){
+      if (currentUser) {
         // axiosSecure.post("/jwt", loggedUser)
-        axios.post("http://localhost:5000/jwt", loggedUser,{ withCredentials: true})
-        .then((res) => {
-          console.log("token response",res.data);
-        })
-      }
-      else{
+        axios
+          .post("https://wanderland-server.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      } else {
         // axiosSecure.post("/logout", loggedUser)
-        axios.post("http://localhost:5000/logout", loggedUser,{ withCredentials: true})
-        .then((res) => {
-          console.log("logout response",res.data);
-        })
+        axios
+          .post("https://wanderland-server.vercel.app/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("logout response", res.data);
+          });
       }
     });
   });

@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../Hooks/useAxios";
 import WishListCard from "../Component/WishListCard";
+import Loading from "../Component/Loading";
 
 const Wishlist = () => {
   const { user } = useContext(AuthContext);
@@ -20,9 +21,7 @@ const Wishlist = () => {
   return (
     <div>
       {isLoading ? (
-        <div className="w-screen h-screen flex items-center justify-center">
-        <span className="loading loading-spinner text-grn  loading-lg"></span>
-      </div>
+        <Loading></Loading>
       ) : (
         <div
           style={{

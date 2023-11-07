@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import BlogCard from "./BlogCard";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Loading from "./Loading";
 
 const LatestBlogs = () => {
   const { blogs, isLoading } = useContext(AuthContext);
@@ -50,9 +51,7 @@ const LatestBlogs = () => {
       </div>
     );
   } else {
-    return <div className="w-screen h-screen flex items-center justify-center">
-    <span className="loading loading-spinner text-grn  loading-lg"></span>
-  </div>;
+    return <Loading></Loading>
   }
 };
 

@@ -1,6 +1,7 @@
 import BlogCard from "../Component/BlogCard";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "../Component/Loading";
 
 const AllBlogs = () => {
   const { blogs, isLoading } = useContext(AuthContext);
@@ -32,7 +33,7 @@ const AllBlogs = () => {
       }}
     >
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading></Loading>
       ) : (
         <div className="max-w-screen-xl mx-auto">
           <h1 className="text-3xl md:text-5xl text-center my-12">

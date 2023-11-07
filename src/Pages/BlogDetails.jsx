@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import BlogDetailsCard from "../Component/BlogDetailsCard";
+import Loading from "../Component/Loading";
 
 const BlogDetails = () => {
     const axiosSecure = useAxios();
@@ -21,9 +22,7 @@ const BlogDetails = () => {
             <div className="max-w-screen-xl mx-auto">
           {
             isLoading ? (
-                <div className="w-screen h-screen flex items-center justify-center">
-        <span className="loading loading-spinner text-grn  loading-lg"></span>
-      </div>
+                <Loading></Loading>
             ) : (
                 <div>
                     <BlogDetailsCard blogDetails={blogDetails}></BlogDetailsCard>

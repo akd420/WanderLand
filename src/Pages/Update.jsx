@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "../Component/Loading";
 
 const Update = () => {
   const { user } = useContext(AuthContext);
@@ -62,9 +63,7 @@ const Update = () => {
     >
       {
         isLoading ? (
-            <div className="w-screen h-screen flex items-center justify-center">
-        <span className="loading loading-spinner text-grn  loading-lg"></span>
-      </div>
+            <Loading></Loading>
         ) : (
             <div className="max-w-screen-xl mx-auto p-4 my-10">
         <h1 className="text-center text-4xl italic font-semibold mb-12">

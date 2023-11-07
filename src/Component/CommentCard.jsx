@@ -12,7 +12,7 @@ const CommentCard = ({comment}) => {
         <div className="chat-header mb-2">
           {comment.currentUserName}
         </div>
-        <div className="chat-bubble bg-grn">{comment.comment} </div>
+        <div className="chat-bubble bg-grn text-white">{comment.comment} </div>
       </div>
     </div>
   );

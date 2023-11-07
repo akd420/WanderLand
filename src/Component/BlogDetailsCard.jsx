@@ -7,6 +7,7 @@ import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { PhotoView } from "react-photo-view";
+import Loading from "./Loading";
 
 const BlogDetailsCard = ({ blogDetails }) => {
   const { _id, name, category, shortDis, longDis, photo,email, userName } =
@@ -133,7 +134,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
              }
               <div>
                 {isLoading ? (
-                  <p>Loading...</p>
+                  <Loading></Loading>
                 ) : 
                 
                 commentsData?.length > 0 ? (
