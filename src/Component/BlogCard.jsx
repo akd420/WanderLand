@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import {  PhotoView } from 'react-photo-view';
-
+import { PhotoView } from "react-photo-view";
 
 /* eslint-disable react/prop-types */
 const BlogCard = ({ blog }) => {
@@ -38,44 +37,57 @@ const BlogCard = ({ blog }) => {
     blogId,
   };
   const axiosSecure = useAxios();
-const handleAddToWishlist = () => {
-  axiosSecure.post("/wishlists", newWishlist)
-    .then((res) => {
-      const insertedId = parseInt(res.data.insertedId);
-      if (insertedId > 0) {
-        toast("Added To Your Wishlist", {
-          icon: "✅",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-      }
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 409) {
-        toast("Duplicate Entry: This blog is already in your wishlist", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#f00",
-            color: "#fff",
-          },
-        });
-      } else {
-        console.error(error);
-      }
-    });
-};
+  const handleAddToWishlist = () => {
+    if(user){
+      axiosSecure
+      .post("/wishlists", newWishlist)
+      .then((res) => {
+        const insertedId = parseInt(res.data.insertedId);
+        if (insertedId > 0) {
+          toast("Added To Your Wishlist", {
+            icon: "✅",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 409) {
+          toast("Duplicate Entry: This blog is already in your wishlist", {
+            icon: "❌",
+            style: {
+              borderRadius: "10px",
+              background: "#f00",
+              color: "#fff",
+            },
+          });
+        } else {
+          console.error(error);
+        }
+      });
+    }
+    else{
+      toast("Please Login First", {
+        icon: "❌",
+        style: {
+          borderRadius: "10px",
+          background: "#f00",
+          color: "#fff",
+        },
+      });
+    }
+  };
 
   return (
     <div>
       <div className="card card-compact bg-base-100 md:h-[500px]">
         <figure>
-            <PhotoView src={photo}>
+          <PhotoView src={photo}>
             <img src={photo} alt="Shoes" />
-            </PhotoView>
+          </PhotoView>
         </figure>
         <div className="card-body">
           {/* <h2 className="card-title">{name}</h2> */}

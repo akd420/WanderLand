@@ -17,7 +17,7 @@ const SliderContainer = () => {
       };
     return (
         <div>
-            <InView threshold={0.8} triggerOnce>
+            <InView threshold={0.5} triggerOnce>
           {({ inView, ref }) => (
             <motion.div
               ref={ref}

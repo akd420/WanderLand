@@ -60,15 +60,16 @@ const Router = createBrowserRouter([
       },
       {
         path: "/featured",
-        element: <Featured></Featured>
+        element: <Featured></Featured>,
       },
       {
         path: "/blogs/:id",
-        element: <BlogDetails></BlogDetails>,
-      },{
-        path: "/update/:id",
-        element: <PrivateRoute><Update></Update></PrivateRoute>,
-      }
+        element: (
+          <PrivateRoute>
+            <BlogDetails></BlogDetails>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
