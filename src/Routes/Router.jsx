@@ -10,7 +10,6 @@ import AllBlogs from "../Pages/AllBlogs";
 import Wishlist from "../Pages/Wishlist";
 import Update from "../Pages/Update";
 import BlogDetails from "../Pages/BlogDetails";
-import Featured2 from "../Pages/Featured";
 import Featured from "../Pages/Featured";
 
 const Router = createBrowserRouter([

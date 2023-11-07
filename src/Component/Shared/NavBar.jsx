@@ -114,7 +114,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-cyan-100 sticky top-0 z-50">
+    <div className="bg-cyan-100 left-0 right-0 sticky top-0 z-10">
       <div className="navbar max-w-screen-xl mx-auto p-4">
         <div className="navbar-start">
           <div className="dropdown">
