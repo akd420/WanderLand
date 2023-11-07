@@ -1,5 +1,6 @@
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { motion } from "framer-motion";
+
 const Items = () => {
   const myStyles = {
     itemShapes: RoundedStar,

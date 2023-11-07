@@ -7,6 +7,7 @@ import Tips from "../Component/Tips";
 import { motion, useAnimation, useScroll, useSpring } from "framer-motion";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { useInView } from "react-intersection-observer";
+import SliderContainer from "../Component/SliderContainer";
 
 const Home = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
@@ -57,6 +58,7 @@ const Home = () => {
         <Tips />
         <NewsLetter />
         <Items />
+        <SliderContainer></SliderContainer>
       </div>
       {inView ? (
         <motion.button
