@@ -74,7 +74,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
         <main className="mt-10 px-4">
           <div className="mb-4 md:mb-0 w-full mx-auto relative">
             <div>
-              <h2 className="text-4xl font-semibold text-gray-800 leading-tight">
+              <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 leading-tight">
                 {name}
               </h2>
               <p>by {userName}</p>
@@ -111,10 +111,10 @@ const BlogDetailsCard = ({ blogDetails }) => {
           <div className="px-4 mt-10">
             {
                 email !== currentEmail ? (<h2 className="text-3xl font-semibold">Post A Comment</h2>) : (<div>
-                    <h1 className="text-xl font-semibold mb-10">Can not post on your own Post.</h1>
+                    <h1 className="text-xl font-semibold mb-10">Can not comment on your own Post.</h1>
                 </div>)
             }
-            <div className="w-8/12">
+            <div className="md:w-8/12">
              {
                 email !== currentEmail ? (
                     <form onSubmit={handleComment} className="flex flex-col">
