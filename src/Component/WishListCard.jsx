@@ -44,7 +44,8 @@ const WishListCard = ({ Wishlist,refetch }) => {
           </PhotoView>
         </figure>
         <div className="card-body">
-          <div title={name} className="card-title">
+         <Link to={`/blogs/${blogId}`}>
+         <div title={name} className="card-title">
             {name.length > 62 ? <p>{name.slice(0, 60)}. . . . </p> : name}
           </div>
           <p className="text-grn font-semibold">{cat}</p>
@@ -55,6 +56,7 @@ const WishListCard = ({ Wishlist,refetch }) => {
               shortDis
             )}
           </div>
+         </Link>
           <div className="card-actions mt-2">
             <Link to={`/blogs/${blogId}`}>
               <motion.button

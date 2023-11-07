@@ -90,7 +90,7 @@ const BlogCard = ({ blog }) => {
           </PhotoView>
         </figure>
         <div className="card-body">
-          {/* <h2 className="card-title">{name}</h2> */}
+          <Link to={`/blogs/${_id}`}>
           <div title={name} className="card-title">
             {name.length > 62 ? <p>{name.slice(0, 60)}. . . . </p> : name}
           </div>
@@ -102,6 +102,7 @@ const BlogCard = ({ blog }) => {
               shortDis
             )}
           </div>
+          </Link>
           <div className="card-actions mt-2">
             <Link to={`/blogs/${_id}`}>
               <motion.button
