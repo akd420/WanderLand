@@ -56,7 +56,7 @@ const Update = () => {
   };
   return (
     <div
-      className="hero min-h-screen"
+      className="min-h-screen"
       style={{
         backgroundImage: "url(/bg.jpg)",
       }}

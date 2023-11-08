@@ -31,13 +31,13 @@ const Navbar = () => {
         });
       });
   };
-//   const [theme, setTheme] = useState("light");
-//   const toggleTheme = () => {
-//     setTheme(theme === "dark" ? "light" : "dark");
-//   };
-//   useEffect(() => {
-//     document.querySelector("html").setAttribute("data-theme", theme);
-//   }, [theme]);
+  //   const [theme, setTheme] = useState("light");
+  //   const toggleTheme = () => {
+  //     setTheme(theme === "dark" ? "light" : "dark");
+  //   };
+  //   useEffect(() => {
+  //     document.querySelector("html").setAttribute("data-theme", theme);
+  //   }, [theme]);
 
   const navLinks = (
     <>
@@ -114,7 +114,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-cyan-100 left-0 right-0 sticky top-0 z-10">
+    <div className="bg-cyan-100 bg-opacity-70 left-0 right-0 sticky top-0 z-10">
       <div className="navbar max-w-screen-xl mx-auto p-4">
         <div className="navbar-start">
           <div className="dropdown">
@@ -143,7 +143,11 @@ const Navbar = () => {
           </div>
           <Link to={"/"}>
             <div className="flex items-center ">
-              <img className="md:w-3/12 w-6/12 mr-1 md:mr-3" src="/logo2.png" alt="" />
+              <img
+                className="md:w-3/12 w-6/12 mr-1 md:mr-3"
+                src="/logo2.png"
+                alt=""
+              />
               <span className="text-lg md:text-2xl">Wander</span>{" "}
               <span className="text-grn text-lg md:text-2xl font-semibold">
                 land
@@ -186,18 +190,28 @@ const Navbar = () => {
           ) : (
             <div className="flex flex-col md:flex-row text-center items-center">
               <Link to={"/login"}>
-              <motion.button whileHover={{
-                scale: 1.2,
-                transition: { duration: 0.1 },
-              }} className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn">Login</motion.button>
-            </Link>
-            <p className="text-lg mx-2">or</p>
+                <motion.button
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.1 },
+                  }}
+                  className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn border-none"
+                >
+                  Login
+                </motion.button>
+              </Link>
+              <p className="text-lg mx-2">or</p>
               <Link to={"/register"}>
-              <motion.button whileHover={{
-                scale: 1.2,
-                transition: { duration: 0.1 },
-              }} className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn">Register</motion.button>
-            </Link>
+                <motion.button
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.1 },
+                  }}
+                  className="btn bg-grn text-white btn-xs md:btn-md hover:bg-grn border-none"
+                >
+                  Register
+                </motion.button>
+              </Link>
             </div>
           )}
           {/* <div className="ml-2 flex items-center justify-center">

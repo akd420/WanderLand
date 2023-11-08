@@ -6,8 +6,9 @@ import useAxios from "../Hooks/useAxios";
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
-  const userName = user?.displayName; 
-  const userPhoto = user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
+  const userName = user?.displayName;
+  const userPhoto =
+    user?.photoURL || "https://images2.imgbox.com/2f/46/t0HrsZQn_o.png";
   const axiosSecure = useAxios();
   const handleAddBlog = (event) => {
     event.preventDefault();
@@ -34,25 +35,23 @@ const AddBlog = () => {
 
     // send data to the server
 
-    axiosSecure.post('/blogs',newBlog)
-    .then((res) =>{
-        console.log(res.data)
-        if (res.data.insertedId) {
-                toast("Blog Added", {
-                    icon: "✅",
-                    style: {
-                    borderRadius: "10px",
-                    background: "#333",
-                    color: "#fff",
-                    },
-                });
-                }
-    })
-    
+    axiosSecure.post("/blogs", newBlog).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        toast("Blog Added", {
+          icon: "✅",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      }
+    });
   };
   return (
     <div
-      className="hero min-h-screen"
+      className="min-h-screen"
       style={{
         backgroundImage: "url(/bg.jpg)",
       }}

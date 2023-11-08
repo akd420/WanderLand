@@ -10,7 +10,6 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebaseConfig";
 import { useQuery } from "@tanstack/react-query";
-// import useAxios from "../Hooks/useAxios";
 import axios from "axios";
 
 export const AuthContext = createContext(null);
@@ -47,7 +46,8 @@ const AuthProvider = ({ children }) => {
     queryKey: ["blogs"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://wanderland-server.vercel.app/blogs"
+        "https://wanderland-server.vercel.app/blogs",
+        { withCredentials: true}
       );
       return response.data;
     },
@@ -60,7 +60,6 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if (currentUser) {
-        // axiosSecure.post("/jwt", loggedUser)
         axios
           .post("https://wanderland-server.vercel.app/jwt", loggedUser, {
             withCredentials: true,
@@ -69,7 +68,6 @@ const AuthProvider = ({ children }) => {
             console.log("token response", res.data);
           });
       } else {
-        // axiosSecure.post("/logout", loggedUser)
         axios
           .post("https://wanderland-server.vercel.app/logout", loggedUser, {
             withCredentials: true,

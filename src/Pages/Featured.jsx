@@ -3,9 +3,10 @@ import useAxios from "../Hooks/useAxios";
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
+import Loading from "../Component/Loading";
 const Featured = () => {
   const axiosSecure = useAxios();
-  const { data: featured } = useQuery({
+  const { data: featured ,isLoading} = useQuery({
     queryKey: ["featured"],
     queryFn: async () => {
       const response = await axiosSecure.get("/featured");
@@ -59,7 +60,9 @@ const Featured = () => {
         backgroundImage: "url(/bg-tips.jpg)",
       }}
     >
-      <div className="max-w-screen-xl mx-auto px-2">
+      {
+        isLoading ? (<Loading></Loading>) : (
+          <div className="max-w-screen-xl mx-auto px-2">
         <h1 className="text-3xl md:text-5xl text-center mt-12">
           Top 10 <span className="text-grn">Blogs</span>
         </h1>
@@ -67,6 +70,8 @@ const Featured = () => {
           <CompactTable columns={COLUMNS} data={data} theme={theme} />
         </div>
       </div>
+        )
+      }
     </div>
   );
 };

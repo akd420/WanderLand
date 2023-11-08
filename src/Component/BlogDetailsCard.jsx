@@ -10,7 +10,7 @@ import { PhotoView } from "react-photo-view";
 import Loading from "./Loading";
 
 const BlogDetailsCard = ({ blogDetails }) => {
-  const { _id, name, category, shortDis, longDis, photo,email, userName } =
+  const { _id, name, category, shortDis, longDis, photo, email, userName } =
     blogDetails;
   const { user } = useContext(AuthContext);
   const blogId = _id;
@@ -51,6 +51,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
       blogId,
       currentUserName,
       currentUserPhoto,
+      email:currentEmail,
     };
 
     axiosSecure.post("/comments", newComment).then((res) => {
@@ -87,7 +88,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
             </div>
 
             <PhotoView src={photo}>
-            <img src={photo} className="w-full rounded" alt="" />
+              <img src={photo} className="w-full rounded" alt="" />
             </PhotoView>
           </div>
 
@@ -99,57 +100,68 @@ const BlogDetailsCard = ({ blogDetails }) => {
               <p className="pb-6">
                 <span className="font-bold">Full Blog:</span> {longDis}
               </p>
-              {
-                email === currentEmail ? (
-                    <div className="flex justify-end">
-              <Link to={`/update/${blogId}`}><button className="btn bg-grn text-white ">Edit Blog</button></Link>
-              </div>
-                ) : ""
-              }
+              {email === currentEmail ? (
+                <div className="flex justify-end">
+                  <Link to={`/update/${blogId}`}>
+                    <button className="btn bg-grn text-white ">
+                      Edit Blog
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="px-4 mt-10">
-            {
-                email !== currentEmail ? (<h2 className="text-3xl font-semibold">Post A Comment</h2>) : (<div>
-                    <h1 className="text-xl font-semibold mb-10">Can not comment on your own Post.</h1>
-                </div>)
-            }
+            {user ? (
+              email !== currentEmail ? (
+                <h2 className="text-3xl font-semibold">Post A Comment</h2>
+              ) : (
+                <div>
+                  <h1 className="text-xl font-semibold mb-10">
+                    Cannot comment on your own Post.
+                  </h1>
+                </div>
+              )
+            ) : (<div>
+              <h1 className="text-xl font-semibold mb-10">
+                You Need to <Link className="font-semibold text-grn" to={"/login"}>Login</Link> To Comment
+              </h1>
+            </div>)}
+
             <div className="md:w-8/12">
-             {
-                email !== currentEmail ? (
-                    <form onSubmit={handleComment} className="flex flex-col">
-                    <textarea
-                      name="comment"
-                      className="border-2 border-gray-300 p-2 rounded-md mt-4 h-52"
-                      placeholder="Write Your Comment Here . . ."
-                    ></textarea>
-                    <button
-                      type="submit"
-                      className="bg-grn w-fit text-white rounded-md p-2 mt-4"
-                    >
-                      Post Comment
-                    </button>
-                  </form>
-                ) : ""
-             }
+              {email !== currentEmail && user ? (
+                <form onSubmit={handleComment} className="flex flex-col">
+                  <textarea
+                    name="comment"
+                    className="border-2 border-gray-300 p-2 rounded-md mt-4 h-52"
+                    placeholder="Write Your Comment Here . . ."
+                  ></textarea>
+                  <button
+                    type="submit"
+                    className="bg-grn w-fit text-white rounded-md p-2 mt-4"
+                  >
+                    Post Comment
+                  </button>
+                </form>
+              ) : (
+                ""
+              )}
               <div>
                 {isLoading ? (
                   <Loading></Loading>
-                ) : 
-                
-                commentsData?.length > 0 ? (
+                ) : commentsData?.length > 0 ? (
                   <div>
                     <h2 className="text-3xl font-semibold">Comments:</h2>
                     <div>
-                   {
-                     commentsData.map((comment) => (
+                      {commentsData.map((comment) => (
                         <CommentCard
                           key={comment._id}
                           comment={comment}
                           refetch={refetch}
                         ></CommentCard>
-                      ))
-                   }
+                      ))}
                     </div>
                   </div>
                 ) : (

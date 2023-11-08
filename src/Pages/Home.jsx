@@ -4,7 +4,7 @@ import Items from "../Component/Items";
 import LatestBlogs from "../Component/LatestBlogs";
 import NewsLetter from "../Component/NewsLetter";
 import Tips from "../Component/Tips";
-import { motion, useAnimation, useScroll, useSpring } from "framer-motion";
+import { motion, useAnimation, } from "framer-motion";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { useInView } from "react-intersection-observer";
 import SliderContainer from "../Component/SliderContainer";
@@ -41,17 +41,17 @@ const Home = () => {
     }
   }, [showScrollButton, controls]);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-    top: '5rem',
-  });
+  // const { scrollYProgress } = useScroll();
+  // const scaleX = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  //   top: '5rem',
+  // });
 
   return (
     <div className=" mx-auto">
-      <motion.div className="fixed top-18 left-0 right-0 h-3 bg-grn origin-[0] z-50" style={{ scaleX }} />
+      {/* <motion.div className="fixed top-18 left-0 right-0 h-3 bg-grn origin-[0] z-50" style={{ scaleX }} /> */}
       <Banner />
       <LatestBlogs />
       <div ref={ref}>

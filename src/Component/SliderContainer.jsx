@@ -25,7 +25,12 @@ const SliderContainer = () => {
               animate={inView ? "visible" : "hidden"}
               variants={sliderAnimation}
             >
+              <div>
+              <h1 className="text-3xl md:text-5xl text-center">
+            Popular places to <span className="text-grn mb-5">Visit</span>
+          </h1>
               <Slider />
+              </div>
             </motion.div>
           )}
         </InView>

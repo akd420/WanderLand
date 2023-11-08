@@ -46,7 +46,7 @@ const WishListCard = ({ Wishlist,refetch }) => {
         <div className="card-body">
          <Link to={`/blogs/${blogId}`}>
          <div title={name} className="card-title">
-            {name.length > 62 ? <p>{name.slice(0, 60)}. . . . </p> : name}
+            {name.length > 62 ? <p>{name.slice(0, 55)}. . . . </p> : name}
           </div>
           <p className="text-grn font-semibold">{cat}</p>
           <div title={shortDis}>
