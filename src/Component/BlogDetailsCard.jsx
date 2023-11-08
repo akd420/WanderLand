@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PhotoView } from "react-photo-view";
 import Loading from "./Loading";
 
@@ -69,6 +69,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
       refetch();
     });
   };
+  const location = useLocation();
   return (
     <div>
       <div className="max-w-screen-xl mx-auto my-12">
@@ -126,7 +127,7 @@ const BlogDetailsCard = ({ blogDetails }) => {
               )
             ) : (<div>
               <h1 className="text-xl font-semibold mb-10">
-                You Need to <Link className="font-semibold text-grn" to={"/login"}>Login</Link> To Comment
+                You Need to <Link state={location.pathname} className="font-semibold text-grn" to={"/login"}>Login</Link> To Comment
               </h1>
             </div>)}
 

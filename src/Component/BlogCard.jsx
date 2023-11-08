@@ -86,7 +86,7 @@ const BlogCard = ({ blog }) => {
       <div className="card card-compact bg-base-100 md:h-[500px]">
         <figure>
           <PhotoView src={photo}>
-            <img src={photo} alt="Shoes" />
+            <img className="md:h-[400px]" src={photo} alt="Shoes" />
           </PhotoView>
         </figure>
         <div className="card-body">
